@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import useLocalStorage from "./components/hooks/useLocalStorage";
+import useLocalStorage from "./components/hooks/UseLocalStorage";
 import Navigation from "./components/routes-nav/Navigation";
 import Routes from "./components/routes-nav/Routes";
 import LoadingSpinner from "./components/common/LoadingSpinner";

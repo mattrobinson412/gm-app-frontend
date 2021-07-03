@@ -1,5 +1,5 @@
 import React from "react";
-import "./CourseLessonCard.css";
+// import "./CourseLessonCard.css";
 
 /** Show limited information about a CourseLesson.
  *

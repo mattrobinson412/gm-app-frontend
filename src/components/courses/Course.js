@@ -39,7 +39,7 @@ function Course() {
       <div>
         <h2>{Course.name}</h2>
         <h4>Level <b>{Course.level}</b></h4>
-        <CourseLessonList lessons={Lessons} course={course} />
+        <CourseLessonList lessons={Lessons} course={Course} />
       </div>
   );
 }

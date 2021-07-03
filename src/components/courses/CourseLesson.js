@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import graceMusicApi from "../../api/api";
-import SinglePage from "./common/Document";
-import Alert from "../common/Alert";
+import SinglePage from "../common/Document";
+import LoadingSpinner from "../common/LoadingSpinner";
+import UserContext from "../auth/UserContext";
 
 
 /** Show information about a lesson.
@@ -13,6 +14,7 @@ import Alert from "../common/Alert";
  */
 
 async function CourseLesson() {
+    const { currentUser } = useContext(UserContext);
     const history = useHistory();
     const { courseName, lessonNumber } = useParams();
 
@@ -33,12 +35,12 @@ async function CourseLesson() {
 
     async function completeLesson(evt) {
         evt.preventDefault();
-        let res = await graceMusicApi.createCourseLesson(CurrentUser.id, Course.id, Lesson.id, true);
+        let res = await graceMusicApi.createCourseLesson(currentUser.id, Course.id, Lesson.id, true);
         if (res.success) {
             history.push(`/courses/${courseName}`);
         }
         else {
-            setFormErrors(result.errors);
+            console.error(res.errors);
         }
     };
 

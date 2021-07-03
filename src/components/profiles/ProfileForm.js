@@ -3,8 +3,7 @@ import Alert from "../common/Alert";
 import graceMusicApi from "../../api/api";
 import UserContext from "../auth/UserContext";
 
-// eslint-disable-next-line
-import useTimedMessage from "../hooks/useTimedMessage";
+import useTimedMessage from "../hooks/UseTimedMessage";
 
 /** Profile editing form.
  *
@@ -32,8 +31,8 @@ function ProfileForm() {
   const [formErrors, setFormErrors] = useState([]);
 
   // switch to use our message hook
-  const [saveConfirmed, setSaveConfirmed] = useState(false);
-  // const [saveConfirmed, setSaveConfirmed] = useTimedMessage()
+  // const [saveConfirmed, setSaveConfirmed] = useState(false);
+  const [saveConfirmed, setSaveConfirmed] = useTimedMessage()
 
   console.debug(
       "ProfileForm",

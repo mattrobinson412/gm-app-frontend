@@ -25,7 +25,7 @@ export default function SinglePage(props) {
   const { pdf } = props;
 
   return (
-    <>
+    <div>
       <Document
         file={pdf}
         options={{ workerSrc: "/pdf.worker.js" }}
@@ -48,6 +48,6 @@ export default function SinglePage(props) {
           Next
         </button>
       </div>
-    </>
+    </div>
   );
 }

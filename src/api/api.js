@@ -18,7 +18,7 @@ class graceMusicApi {
         console.debug("API Call:", endpoint, data, method);
     
         const url = `${BASE_URL}/${endpoint}`;
-        const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+        const headers = { Authorization: `Bearer ${graceMusicApi.token}` };
         const params = (method === "get")
             ? data
             : {};
