@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import graceMusicApi from "../api/api";
+import graceMusicApi from "../../api/api";
 import CourseLessonList from "./CourseLessonList";
 import LoadingSpinner from "../common/LoadingSpinner";
 

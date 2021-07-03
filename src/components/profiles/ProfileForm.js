@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Alert from "../common/Alert";
-import graceMusicApi from "../api/api";
+import graceMusicApi from "../../api/api";
 import UserContext from "../auth/UserContext";
 
 // eslint-disable-next-line

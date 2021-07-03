@@ -90,6 +90,13 @@ class graceMusicApi {
       return res.courselesson;
     }
 
+    // PATCH a course_lesson for a specific user.
+
+    static async markComplete(data) {
+      let res = await this.request(`courselesson`, data, "patch");
+      return res.courselesson;
+    }
+
 }
 
 export default graceMusicApi;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchForm from "../common/SearchForm";
-import graceMusicApi from "../api/api";
+import graceMusicApi from "../../api/api";
 import CourseCard from "./CourseCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 
