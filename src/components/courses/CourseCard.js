@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
  * CourseList -> CourseCard
  */
 
-function CourseCard({ name, level }) {
+function CourseCard({ name, level, id }) {
   console.debug("CourseCard");
 
   return (
-      <Link className="CourseCard" to={`/courses/${name}`}>
-        <div>
+      <Link className="CourseCard" to={`/courses/${name}`} key={id}>
+        <div >
           <h3>
             {name}
           </h3>

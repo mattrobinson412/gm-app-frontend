@@ -3,7 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 import graceMusicApi from "../../api/api";
 import SinglePage from "../common/Document";
 import LoadingSpinner from "../common/LoadingSpinner";
-import UserContext from "../auth/UserContext";
 
 
 /** Show information about a lesson.
@@ -13,49 +12,58 @@ import UserContext from "../auth/UserContext";
  * CourseLessonList -> CourseLessonCard -> CourseLesson
  */
 
-async function CourseLesson() {
-    const { currentUser } = useContext(UserContext);
+function CourseLesson() {
     const history = useHistory();
-    const { courseName, lessonNumber } = useParams();
+    const { name, number } = useParams();
 
-    const [Lesson, setCourseLesson] = useState(null);
-    const [Course, setCourse] = useState(null);
+    console.log(name, number);
+
+    const [lesson, setCourseLesson] = useState(null);
 
     useEffect(function getCourseLessonsForUser() {
-        async function getCourse() {
-            setCourse(await graceMusicApi.getCourse(courseName));
-        }
-        getCourse();
+        getCourse(name);
+    }, []);
 
-        async function getCourseLesson() {
-        setCourseLesson(await graceMusicApi.getLesson(courseName, lessonNumber));
+    async function getCourse(name) {
+        let res = await graceMusicApi.getCourse(name);
+        grabLesson(res.id, number);
+    }
+
+    async function grabLesson(courseId, lessonNumber) {
+        let res = await graceMusicApi.getLesson(courseId, lessonNumber);
+        setCourseLesson(res);
         }
-        getCourseLesson();
-    }, [courseName, lessonNumber]);
 
     async function completeLesson(evt) {
         evt.preventDefault();
-        let res = await graceMusicApi.createCourseLesson(currentUser.id, Course.id, Lesson.id, true);
-        if (res.success) {
-            history.push(`/courses/${courseName}`);
-        }
-        else {
-            console.error(res.errors);
-        }
+        history.push(`/courses/${name}`);
     };
 
-    if (!Lesson) return <LoadingSpinner />;
+    if (!lesson) return <LoadingSpinner />;
+    console.log(lesson);
 
     return (
         <div>
-            <h2>{Lesson.name}</h2>
-            <SinglePage pdf={Lesson.sheet} />
-            <p>{Lesson.sound}</p>
-            <button onClick={completeLesson}>
-                Complete Lesson
-            </button>
+            {lesson ? (
+            <div>
+                <h2>{lesson.name}</h2>
+                <SinglePage pdf={lesson.sheet} />
+                <p>{lesson.sound}</p>
+                <button onClick={completeLesson}>
+                    Complete Lesson
+                </button>
+            </div>
+            
+            ) : (
+                <p>Sorry, no lesson was found!</p>
+            )}
         </div>
-    );
+        
+    )
+            
+            
+        
+    ;
 }
 
 export default CourseLesson;

@@ -17,7 +17,7 @@ function Homepage() {
 
   return (
       <div className="Homepage">
-          <h1>Grace Music</h1>
+          <h1>See, Hear, Sing</h1>
           <p className="lead">Making music ministry accessible for the everyday churchmen.</p>
           {currentUser
               ? <h2>

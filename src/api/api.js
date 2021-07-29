@@ -62,6 +62,12 @@ class graceMusicApi {
       return res.user;
     }
 
+    /** GET / all courses. */
+    static async getCourses() {
+      let res = await this.request(`courses`);
+      return res.courses;
+    }
+
     /** GET a specific course. */
     
     static async getCourse(name) {
@@ -72,14 +78,14 @@ class graceMusicApi {
     // GET all lessons for a specific course.
 
     static async getLessons(courseId) {
-      let res = await this.request("lessons", { courseId });
+      let res = await this.request(`lessons/${courseId}`, courseId);
       return res.lessons;
     }
 
     // GET specific lesson for a specific course.
 
     static async getLesson(courseId, lessonNumber) {
-      let res = await this.request(`courses/${courseId}`, lessonNumber);
+      let res = await this.request(`lessons/${courseId}/${lessonNumber}`);
       return res.lesson;
     }
 

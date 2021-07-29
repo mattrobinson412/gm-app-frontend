@@ -6,9 +6,9 @@ import LoadingSpinner from "../common/LoadingSpinner";
 
 /** Course Detail page.
  *
- * Renders information about Course, along with the jobs at that Course.
+ * Renders information about Course, along with the lessons at that Course.
  *
- * Routed at /companies/:name
+ * Routed at /courses/:name
  *
  * Routes -> Course -> CourseLesson
  */
@@ -17,30 +17,26 @@ function Course() {
   const { name } = useParams();
   console.debug("Course", "name=", name);
 
-  const [Course, setCourse] = useState(null);
-  const [Lessons, setLessons] = useState(null);
+  const [course, setCourse] = useState([]);
 
-  useEffect(function getCourseAndLessonsForUser() {
-    async function getCourse() {
-      setCourse(await graceMusicApi.getCourse(name));
+  useEffect(function getCoursesOnMount() {
+    console.debug("Course useEffect getCoursesOnMount");
+    grabCourse(name);
+  }, []);
+
+  async function grabCourse(name) {
+      let res = await graceMusicApi.getCourse(name);
+      setCourse(course.push(res));
     }
-    getCourse();
+  
 
-    async function getLessons() {
-        setLessons(await graceMusicApi.getLessons(Course.id));
-    }
-    getLessons();
-
-  }, [name]);
-
-  if (!Course) return <LoadingSpinner />;
+  if (!course) return <LoadingSpinner />;
 
   return (
-      <div>
-        <h2>{Course.name}</h2>
-        <h4>Level <b>{Course.level}</b></h4>
-        <CourseLessonList lessons={Lessons} course={Course} />
-      </div>
+    <div>
+      <h2>{course.name}</h2>
+      <CourseLessonList />
+    </div>
   );
 }
 

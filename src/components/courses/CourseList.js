@@ -39,6 +39,8 @@ function CourseList() {
                 <div className="CourseList-list">
                   {courses.map(c => (
                       <CourseCard
+                          key={c.id}
+                          id={c.id}
                           name={c.name}
                           level={c.level}
                       />

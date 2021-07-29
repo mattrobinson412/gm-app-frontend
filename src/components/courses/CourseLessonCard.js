@@ -9,12 +9,12 @@ import React from "react";
  * 
  */
 
-function CourseLessonCard({ lesson }) {
-  console.debug("CourseLessonCard");
+function CourseLessonCard({ lessonName, lessonNumber }) {
+  console.debug("CourseLessonCard", lessonName, lessonNumber);
 
   return (
       <div className="CourseLessonCard">
-          <h3>{lesson.name}</h3> - <h5>#{lesson.number}</h5>
+          <h3>{lessonName}</h3> - <h5>#{lessonNumber}</h5>
       </div>
   );
 }
